@@ -1,0 +1,24 @@
+table.Payees  {
+    font-size: 10px;
+}
+
+table.Transactions {
+    font-size: 10px;
+}
+
+.Container {
+    display: flex;
+    flex-flow: row;
+}
+
+.PayeesDiv {
+    width: 25%;
+}
+
+.AccountsDiv {
+    width: 25%;
+}
+
+.TransactionsDiv {
+    width: 50%;
+}

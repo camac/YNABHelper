@@ -1,0 +1,8 @@
+import * as ynab from 'ynab';
+
+// Copy this file as mynab.js and replace token
+const accessToken = "YOUR TOKEN HERE";
+const mynab = new ynab.API(accessToken);
+
+export default mynab;
+
