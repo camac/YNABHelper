@@ -4,7 +4,11 @@ const budgetSlice = createSlice({
     name: 'budget',
     initialState: {
         budgets: [],
-        budget: {}
+        budget: {},
+        payees: [],
+        accounts: [],
+        categories: [],
+        uncategorized: []
     },
     reducers: {
         setbudget(state, action) {
@@ -16,6 +20,18 @@ const budgetSlice = createSlice({
             console.log('set budgets in the storee');
             console.log(action.payload);
             state.budgets = action.payload;
+        },
+        setpayees(state, action) {
+            state.payees = action.payload;
+        },
+        setaccounts(state, action) {
+            state.accounts = action.payload;
+        },
+        setcategories(state, action) {
+            state.categories = action.payload;
+        },
+        setuncategorized(state, action) {
+            state.uncategorized = action.payload;
         }
     }
 });

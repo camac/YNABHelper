@@ -28,6 +28,9 @@ import '@fullcalendar/timegrid/main.css';
 import './layout/flags/flags.css';
 import './layout/layout.scss';
 import './App.scss';
+import Rules from './components/Rules/Rules';
+import Categories from './components/Category/Categories';
+import Uncoded from './components/Uncoded/Uncoded';
 
 const App = () => {
 
@@ -116,6 +119,7 @@ const App = () => {
         { label: 'Budgets', icon: 'pi pi-fw pi-home', to: '/budgets' },
         { label: 'Rules', icon: 'pi pi-fw pi-home', to: '/rules' },
         { label: 'Payees', icon: 'pi pi-fw pi-home', to: '/payees' },
+        { label: 'Categories', icon: 'pi pi-fw pi-home', to: '/categories' },
         { label: 'Uncoded', icon: 'pi pi-fw pi-home', to: '/uncoded' },
         { label: 'Counter', icon: 'pi pi-fw pi-calculator', to: '/counter' },
         { label: 'Empty', icon: 'pi pi-fw pi-home', to: '/empty' }
@@ -186,8 +190,11 @@ const App = () => {
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/budgets" render={(props) => <Budgets />} />
                 <Route path="/empty" component={EmptyPage} />
+                <Route path="/rules" component={Rules} />
                 <Route path="/payees" component={PayeeTable} />
+                <Route path="/categories" component={Categories} />
                 <Route path="/counter" component={Counter} />
+                <Route path="/uncoded" component={Uncoded} />
             </div>
 
             <AppFooter />

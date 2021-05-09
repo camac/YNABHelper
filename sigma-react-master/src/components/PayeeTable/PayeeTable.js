@@ -38,7 +38,7 @@ const PayeeTable = (props) => {
     }
 
 
-    }, []);
+    }, [budget.id]);
 
     let output = <p>Payees loading...</p>;
 
