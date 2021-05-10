@@ -7,13 +7,9 @@ import { AppTopbar } from './AppTopbar';
 import { AppFooter } from './AppFooter';
 import { AppMenu } from './AppMenu';
 import { AppConfig } from './AppConfig';
-import PayeeTable from './components/PayeeTable/PayeeTable';
+import Payees from './components/Payees/Payees';
 import Budgets from './components/BudgetSelect/Budgets';
-import Counter from './components/Counter/Counter';
 
-import { Dashboard } from './components/Dashboard';
-
-import { EmptyPage } from './pages/EmptyPage';
 
 import PrimeReact from 'primereact/api';
 
@@ -30,7 +26,8 @@ import './layout/layout.scss';
 import './App.scss';
 import Rules from './components/Rules/Rules';
 import Categories from './components/Category/Categories';
-import Uncoded from './components/Uncoded/Uncoded';
+import Uncategorized from './components/Uncategorized/Uncategorized';
+import Run from './components/Run/Run';
 
 const App = () => {
 
@@ -115,14 +112,12 @@ const App = () => {
     }
 
     const menu = [
-        { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
-        { label: 'Budgets', icon: 'pi pi-fw pi-home', to: '/budgets' },
-        { label: 'Rules', icon: 'pi pi-fw pi-home', to: '/rules' },
-        { label: 'Payees', icon: 'pi pi-fw pi-home', to: '/payees' },
-        { label: 'Categories', icon: 'pi pi-fw pi-home', to: '/categories' },
-        { label: 'Uncoded', icon: 'pi pi-fw pi-home', to: '/uncoded' },
-        { label: 'Counter', icon: 'pi pi-fw pi-calculator', to: '/counter' },
-        { label: 'Empty', icon: 'pi pi-fw pi-home', to: '/empty' }
+        { label: 'Budgets', icon: 'pi pi-fw pi-book', to: '/' },
+        { label: 'Run', icon: 'pi pi-fw pi-play', to: '/run' },
+        { label: 'Rules', icon: 'pi pi-fw pi-flag', to: '/rules' },
+        { label: 'Payees', icon: 'pi pi-fw pi-users', to: '/payees' },
+        { label: 'Categories', icon: 'pi pi-fw pi-th-large', to: '/categories' },
+        { label: 'Uncategorized', icon: 'pi pi-fw pi-question', to: '/uncoded' }
     ];
 
     const addClass = (element, className) => {
@@ -187,14 +182,12 @@ const App = () => {
                 layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} />
 
             <div className="layout-main">
-                <Route path="/" exact component={Dashboard} />
-                <Route path="/budgets" render={(props) => <Budgets />} />
-                <Route path="/empty" component={EmptyPage} />
+                <Route path="/" exact component={Budgets} />
                 <Route path="/rules" component={Rules} />
-                <Route path="/payees" component={PayeeTable} />
+                <Route path="/payees" component={Payees} />
                 <Route path="/categories" component={Categories} />
-                <Route path="/counter" component={Counter} />
-                <Route path="/uncoded" component={Uncoded} />
+                <Route path="/uncategorized" component={Uncategorized} />
+                <Route path="/run" component={Run} />
             </div>
 
             <AppFooter />

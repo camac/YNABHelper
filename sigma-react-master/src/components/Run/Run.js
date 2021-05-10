@@ -5,34 +5,23 @@ import mynab from '../../mynab';
 import firebase from '../../firebase';
 import { useSelector } from 'react-redux';
 import { Button } from 'primereact/button';
-import { RulesService } from '../../service/RulesService';
 
-const Uncoded = (props) => {
+const Run = (props) => {
 
     const budget = useSelector((state) => state.budget.budget);
+
+    const transactions = useSelector((state) => state.budget.uncategorized);
 
     const [selectedTransaction, setSelectedTransaction] = useState(null);
     const [selectedRule, setSelectedRule] = useState(null);
 
-    const [transactions, setTransactions] = useState(null);
     const [rules, setRules] = useState(null);
 
     // method, dependencies
     useEffect(() => { 
 
         if (budget.id) {
-
-            const rs = new RulesService();
-
-            mynab.transactions.getTransactionsByType(budget.id,"uncategorized")
-            .then(res => {
-                setTransactions(res.data.transactions);
-            }).catch(e => {
-                console.log(e);
-            });
-
             loadRules();
-
         } else {
             console.log('budget is not selected');
         }
@@ -100,9 +89,12 @@ const Uncoded = (props) => {
                     newt.payee_id = r.payeeId;
                     newt.category_id = r.categoryId;
 
-                    mynab.transactions.updateTransaction(budget.id, t.id, {
-                        transaction: newt
+                    let transtoupdate = [ newt ];
+
+                    mynab.transactions.updateTransactions(budget.id,{
+                        transactions: transtoupdate
                     }).then(res => {
+                        console.log('worked');
                         console.log(res);
                     }).catch(e => {
                         console.log(e);
@@ -188,8 +180,10 @@ const Uncoded = (props) => {
             header={transactions.length + ' Transactions'}
             value={selectedRule ? selectedRule.matched : transactions}
             dataKey="id" 
+            autoLayout="true"
             selectionMode="single" 
             selection={selectedTransaction} 
+            className="p-datatable-sm"
             onSelectionChange={e => setSelectedTransaction(e.value)}
         >
             <Column field="memo" header="Memo" filter filterPlaceholder="Memo" filterMatchMode="contains"></Column>
@@ -209,4 +203,4 @@ const Uncoded = (props) => {
     );
 }
 
-export default Uncoded;
+export default Run;
