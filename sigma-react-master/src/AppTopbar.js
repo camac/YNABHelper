@@ -1,7 +1,11 @@
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
+import { useSelector } from 'react-redux';
 
 export const AppTopbar = (props) => {
+
+    const rateLimitRemaining = useSelector((state) => state.budget.rateLimitRemaining);
+
     return (
         <div className="layout-topbar clearfix">
             <button type="button" className="p-link layout-menu-button" onClick={props.onToggleMenu}>
@@ -13,9 +17,9 @@ export const AppTopbar = (props) => {
                     <span className="layout-topbar-search-icon pi pi-search" />
                 </span>
                 <button type="button" className="p-link">
-                    <span className="layout-topbar-item-text">Events</span>
-                    <span className="layout-topbar-icon pi pi-calendar" />
-                    <span className="layout-topbar-badge">5</span>
+                    <span className="layout-topbar-item-text">Requests</span>
+                    <span className="layout-topbar-icon pi pi-download" />
+                    <span className="layout-topbar-badge">{rateLimitRemaining}</span>
                 </button>
                 <button type="button" className="p-link">
                     <span className="layout-topbar-item-text">Settings</span>

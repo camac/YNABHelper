@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const budgetSlice = createSlice({
     name: 'budget',
     initialState: {
+        rateLimit: null,
+        rateLimitRemaining: null,
         budgets: [],
         budget: {},
         payees: [],
@@ -32,6 +34,11 @@ const budgetSlice = createSlice({
         },
         setuncategorized(state, action) {
             state.uncategorized = action.payload;
+        },
+        setratelimit(state, action) {
+
+            state.rateLimit = 50;
+            state.rateLimitRemaining = 12;
         }
     }
 });
