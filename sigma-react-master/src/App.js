@@ -39,7 +39,6 @@ const App = () => {
     const [inputStyle, setInputStyle] = useState('outlined');
     const [ripple, setRipple] = useState(false);
     const sidebar = useRef();
-    const [budgets, setBudgets] = useState([]);
 
     const history = useHistory();
 
@@ -94,10 +93,6 @@ const App = () => {
             setMobileMenuActive(prevState => !prevState);
         }
         event.preventDefault();
-    }
-
-    const loadbudgets = () => {
-        console.log("load budgets");
     }
 
     const onSidebarClick = () => {
