@@ -11,11 +11,15 @@ const NewRule = () => {
     const patternRef = useRef();
     const descriptionRef = useRef();
 
+    const budget = useSelector((state) => state.budget.budget);
+
     const payees = useSelector((state) => state.budget.payees);
     const categories = useSelector((state) => state.budget.categories);
+    const accounts = useSelector((state) => state.budget.accounts);
 
     const [selectedPayee, setSelectedPayee] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedAccount, setSelectedAccount] = useState(null);
 
  
    const addRule = () => {
@@ -27,17 +31,28 @@ const NewRule = () => {
         console.log(pattern);
         console.log(description);
 
-        if (selectedPayee && selectedCategory) {
+        if (selectedPayee || selectedCategory) {
             console.log(selectedPayee);
             console.log(selectedCategory);    
 
             const newRule = {
                 pattern: pattern,
                 description: description,
-                payeeId: selectedPayee.id,
-                payeeName: selectedPayee.name,
-                categoryId: selectedCategory.id,
-                categoryName: selectedCategory.name
+            }
+
+            if (selectedCategory) {
+                newRule.categoryId = selectedCategory.id;
+                newRule.categoryName = selectedCategory.name;
+            }
+
+            if (selectedPayee) {
+                newRule.payeeId = selectedPayee.id;
+                newRule.payeeName = selectedPayee.name;
+            }
+
+            if (selectedAccount) {
+                newRule.account_id = selectedAccount.id;
+                newRule.account_name = selectedAccount.name;
             }
 
             firebase.post('/rules.json', newRule)
@@ -74,7 +89,7 @@ const NewRule = () => {
                 </div>
                     
             </div>
-            <div className="p-col-6">
+            <div className="p-col-4">
                 <div className="card">
                     <h5>Select Payee</h5>
                     <DataTable 
@@ -89,7 +104,7 @@ const NewRule = () => {
                 </div>
 
             </div>
-            <div className="p-col-6">
+            <div className="p-col-4">
                 <div className="card">
                     <h5>Select Category</h5>
                     <DataTable 
@@ -99,6 +114,20 @@ const NewRule = () => {
             selection={selectedCategory} 
             onSelectionChange={e => setSelectedCategory(e.value)}>
             <Column field="name" header="Name" filter filterPlaceholder="Category" filterMatchMode="contains"></Column>
+        </DataTable>
+
+                </div>
+            </div>
+            <div className="p-col-4">
+                <div className="card">
+                    <h5>Select Account</h5>
+                    <DataTable 
+            value={accounts}
+            dataKey="id" 
+            selectionMode="single" 
+            selection={selectedAccount} 
+            onSelectionChange={e => setSelectedAccount(e.value)}>
+            <Column field="name" header="Name" filter filterPlaceholder="Account" filterMatchMode="contains"></Column>
         </DataTable>
 
                 </div>

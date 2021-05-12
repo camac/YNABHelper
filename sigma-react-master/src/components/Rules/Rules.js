@@ -86,10 +86,12 @@ const Rules = () => {
         selectionMode="single" 
         selection={selectedRule} 
         onSelectionChange={e => setSelectedRule(e.value)}
-    >
-        <Column field="pattern" header="Pattern" filter filterPlaceholder="Pattern" filterMatchMode="contains"></Column>
+        sortField="pattern"
+        >
+        <Column field="pattern" sortable="true" header="Pattern" filter filterPlaceholder="Pattern" filterMatchMode="contains"></Column>
         <Column field="payeeName" header="Payee" filter filterPlaceholder="Payee" filterMatchMode="contains"></Column>
         <Column field="categoryName" header="Category" filter filterPlaceholder="Category" filterMatchMode="contains"></Column>
+        <Column field="account_name" header="Account" filter filterPlaceholder="Account" filterMatchMode="contains"></Column>
     </DataTable>);
 
 
