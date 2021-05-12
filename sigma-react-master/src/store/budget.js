@@ -10,7 +10,8 @@ const budgetSlice = createSlice({
         payees: [],
         accounts: [],
         categories: [],
-        uncategorized: []
+        uncategorized: [],
+        updatedTransactions: []
     },
     reducers: {
         setbudget(state, action) {
@@ -39,6 +40,22 @@ const budgetSlice = createSlice({
 
             state.rateLimit = 50;
             state.rateLimitRemaining = 12;
+        },
+        registerUpdated(state, action) {
+
+            console.log('register updated');
+
+            console.log(action.payload);
+
+            const ids = action.payload.transaction_ids;
+
+            const newuncat = state.uncategorized.filter(t => !ids.includes(t.id));
+
+            state.uncategorized = newuncat;
+
+            // Add the Updated Transactions to the Updated List
+            state.updatedTransactions.push(...action.payload.transactions);
+
         }
     }
 });
