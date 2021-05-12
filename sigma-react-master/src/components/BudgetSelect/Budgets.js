@@ -53,7 +53,16 @@ const Budgets = () => {
             }).catch(e => {
                 console.log(e);
             });
-        
+
+        // Load Accounts
+        mynab.accounts.getAccounts(b.id)
+            .then(res => {
+                dispatch(budgetActions.setaccounts(res.data.accounts));
+                dispatch(budgetActions.setratelimit(res));
+            }).catch(e => {
+                console.log(e);
+            })
+            
         // Load Uncategorized Transactions
         mynab.transactions.getTransactionsByType(b.id,"uncategorized")
             .then(res => {
